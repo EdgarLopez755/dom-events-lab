@@ -117,8 +117,8 @@ buttons.forEach(button => {
     } else {
       handleNumber(value);
     }
-  });
-});
+  })
+})
 
 
 
