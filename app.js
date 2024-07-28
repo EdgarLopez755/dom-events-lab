@@ -56,11 +56,11 @@ function handleOperator(op) {
   display.textContent = firstOperand + operator
 }
 
-function calculate() {
+function calculate() {  
   let result;
-  switch (operator) {  // 
+  switch (operator) {  
     case '+':
-      result = parseFloat(firstOperand) + parseFloat(secondOperand)
+      result = parseFloat(firstOperand) + parseFloat(secondOperand)  // parseFloat to convert the firstOperand and secondOperand to floating point numbers.
       break;
     case '-':
       result = parseFloat(firstOperand) - parseFloat(secondOperand)
