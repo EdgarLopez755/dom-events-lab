@@ -1,8 +1,10 @@
 /*-------------------------------- Constants --------------------------------*/
 
-const buttons = document.querySelectorAll('.button')
 
-const calculator = document.querySelector('#calculator');
+const display = calculator.querySelector('.display')
+
+const buttons = calculator.querySelector('.button')
+
 
 
 
@@ -12,7 +14,11 @@ const calculator = document.querySelector('#calculator');
 
 /*-------------------------------- Variables --------------------------------*/
 
+let firstOperand = ''
 
+let secondOperand = ''
+
+let operator = ''
 
 
 
@@ -21,6 +27,71 @@ const calculator = document.querySelector('#calculator');
 
 
 /*------------------------ Cached Element References ------------------------*/
+
+
+const calculator = document.getElementById('calculater')
+
+
+
+  
+
+
+
+
+
+
+/*-------------------------------- Functions --------------------------------*/
+
+function handleNumber(number) {
+  if (!operator) {
+    firstOperand += number
+  } else {
+    secondOperand += number
+  }
+  display.textContent = firstOperand || '' + operator + secondOperand || ''
+}
+
+function handleOperator(op) {
+  operator = op
+  display.textContent = firstOperand + operator
+}
+
+function calculate() {
+  let result;
+  switch (operator) {  // 
+    case '+':
+      result = parseFloat(firstOperand) + parseFloat(secondOperand)
+      break;
+    case '-':
+      result = parseFloat(firstOperand) - parseFloat(secondOperand)
+      break;
+    case '*':
+      result = parseFloat(firstOperand) * parseFloat(secondOperand)
+      break;
+    case '/':
+      result = parseFloat(firstOperand) / parseFloat(secondOperand)
+      break;
+    default:
+      return
+  }
+
+
+
+  
+  display.textContent = result
+  firstOperand = result
+  secondOperand = ''
+  operator = ''
+}
+
+function clearDisplay() {
+  firstOperand = ''
+  secondOperand = ''
+  operator = ''
+  display.textContent = ''
+}
+
+
 
 
 
@@ -32,37 +103,22 @@ const calculator = document.querySelector('#calculator');
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-buttons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      // This log is for testing purposes to verify we're getting the correct value
-      console.log(event.target.innerText);
-      // Future logic to capture the button's value would go here...
-    });
-  });
-  
-  calculator.addEventListener('click', (event) => {
-    // This log is for testing purposes to verify we're getting the correct value
-    // You have to click a button to see this log
-    console.log(event.target.innerText);
-  
-    // Example
-    if (event.target.classList.contains('number')) {
-      // Do something with a number
-    }
-  
-    // Example
-    if (event.target.innerText === '*') {
-      // Do something with this operator
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const value = button.textContent;
+
+    if (value === 'C') {
+      clearDisplay();
+    } else if (value === '=') {
+      calculate();
+    } else if (value === '+' || value === '-' || value === '*' || value === '/') {
+      handleOperator(value);
+    } else {
+      handleNumber(value);
     }
   });
-  
-
-
-
-
-
-
-/*-------------------------------- Functions --------------------------------*/
+});
 
 
 
