@@ -1,9 +1,9 @@
 /*-------------------------------- Constants --------------------------------*/
 
+const calculator = document.getElementById('calculator');
+const display = calculator.querySelector('.display');
+const buttons = calculator.querySelectorAll('.button');
 
-const display = calculator.querySelector('.display')
-
-const buttons = calculator.querySelector('.button')
 
 
 
@@ -29,7 +29,7 @@ let operator = ''
 /*------------------------ Cached Element References ------------------------*/
 
 
-const calculator = document.getElementById('calculater')
+
 
 
 
